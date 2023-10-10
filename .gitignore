@@ -1,0 +1,5 @@
+# Ignore Node.js modules
+node_modules/
+
+# Ignore all files and subdirectories in views directory
+views/*
