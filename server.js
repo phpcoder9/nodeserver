@@ -9,12 +9,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 const winston = require("winston");
 const logger = require('./logger/logger');
+const morgan = require('morgan');
 
 try {
   
   app.set("view engine", "ejs");
   app.set("views", path.join(__dirname, "views"));
-
+  if (process.env.NODE_ENV === 'production') {
+    app.use(morgan('combined'));
+  } else {
+    app.use(morgan('dev'));
+  } 
   app.use(
     session({
       secret: "your-secret-key",
